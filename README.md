@@ -37,6 +37,52 @@ git push origin master >(pull a request to be commited )
 git push upstream master >(push directly to the master branche ) << Need permission >>
 
 
+# DOTNET CLI #
+
+## Definitions ##
+
+Defined commands by .net
+
+-  dotnet --version
+
+​		verify actual version
+
+-  dotnet --list-runtimes
+
+  List installed SDKs
+
+- dotnet --list-runtimes
+
+  List installed runtimes
+
+- dotnet help
+
+  Show Help
+
+  List Commands
+
+## New Project ##
+
+## dotnet CLI definitions ##
+
+- dotnet new console
+- dotnet new classlib
+- dotnet new mvc
+- dotnet new webapi
+- dotnet new mstest
+
+## # float# (32-bits)
+
+- 3.402823e38 at 3.402823e38
+
+## ** double (64-bit) ** 
+
+- -1.79769313486232e308 at 1.79769313486232e308
+
+## @ **decimal (128-bit) ** @
+
+- +-1.0 x 10e-28 at 7.9 x 10e29
+
 
 
 
