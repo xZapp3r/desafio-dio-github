@@ -71,6 +71,17 @@ Defined commands by .net
 - dotnet new webapi
 - dotnet new mstest
 
+## dotnet packages installation
+
+[string] packList = [
+   Microsoft.AspNetCore.Mvc           2.2.0       2.2.0   
+   EntityFrameworkCore.Design         7.0.2       7.0.2   
+   EntityFrameworkCore.SqlServer      7.0.2       7.0.2   
+   Newtonsoft.Json                    13.0.2      13.0.2  
+];
+
+dotnet add package $"Microsoft.{packList}"
+
 ## # float# (32-bits)
 
 - 3.402823e38 at 3.402823e38
@@ -82,6 +93,32 @@ Defined commands by .net
 ## @ **decimal (128-bit) ** @
 
 - +-1.0 x 10e-28 at 7.9 x 10e29
+
+
+## Docker Sql Server Installation
+
+sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<?php$mssql?>" \
+    -p 1433:1433 --name sql1 --hostname sql1 \
+    -d \
+    mcr.microsoft.com/mssql/server:2022-latest
+#### Completed command change: sql2 version
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<?php$mssql>" \
+    -v /db/:/var/opt/mssql/data \
+    -p 1433:1433  \
+    --rm --name sql2 \
+    -h sql1 \
+    -d mcr.microsoft.com/mssql/server:2019-latest \
+    --restart=always 
+
+sudo docker exec -it sql2 /opt/mssql-tools/bin/sqlcmd \
+    -S localhost -U SA \
+    -P "$(read -sp "Enter current SA password: "; echo "${REPLY}")" \
+    -Q "ALTER LOGIN SA WITH PASSWORD=\"$(read -sp "Enter new SA password: "; echo "${REPLY}")\""
+
+docker run -d -v $(pwd)/db:/opt/ -p 1433:1433 --rm --name sql2 mcr.microsoft.com/mssql/server
+
+          sudo docker exec -it sql2 "bash"
+
 
 
 
